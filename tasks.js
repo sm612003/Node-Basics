@@ -80,6 +80,8 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+ /**that lists all the possible commands*/
+ 
 function help() {
   console.log(`possible commands are: 
   1-hello: print hello 
