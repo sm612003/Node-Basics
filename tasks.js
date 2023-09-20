@@ -33,12 +33,19 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
 function onDataReceived(text) {
+  text = text.trim();
+  text.split(' ');
+ 
   if (text === 'quit\n' ||text==='exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if (text.startsWith('hello ')) {
+    const word = text.slice(6); // extract the argument using slice
+    hello(word); // pass the extracted argument to hello
+  } else if (text === 'hello') {
+    hello(); //  call hello without an argument
   }
   else if ( text === "help\n"){
     help();
@@ -66,10 +73,13 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(x) {
+  if (x) {
+    console.log('hello ' + x + '!');
+  } else {
+    console.log('hello!');
+  }
 }
-
 
 /**
  * Exits the application
@@ -81,11 +91,10 @@ function quit(){
   process.exit();
 }
  /**that lists all the possible commands*/
- 
+
 function help() {
   console.log(`possible commands are: 
   1-hello: print hello 
-  2-hello (name): print hello + name
   3-exit: quit the app
   4- quit: quit the app
   5-help:lists all the possible commands `
