@@ -94,7 +94,8 @@ function quit(){
 
 function help() {
   console.log(`possible commands are: 
-  1-hello: print hello 
+  1-hello: print hello!
+  2-hello (x): Print hello + x
   3-exit: quit the app
   4- quit: quit the app
   5-help:lists all the possible commands `
