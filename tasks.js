@@ -61,8 +61,10 @@ function onDataReceived(text) {
   else if ( text === "help"){
     help();
   }
-  else if ( text === "remove"){
-    removetask();
+  else if ( text.startsWith("remove")){
+    removetask(text.slice(6));
+    
+
   }
   else if (text==="remove 1"){
     removefirst();
@@ -70,6 +72,7 @@ function onDataReceived(text) {
   else if (text==="remove 2"){
     removesecond();
   }
+ 
   else{
     unknownCommand(text);
   }
@@ -140,7 +143,18 @@ function addTask(eachtask) {
   console.log(`Added task: "${eachtask}"`);
 }
  //remove (without anything) should remove the last task
-function removetask() {
+function removetask(numb) {
+  nb=numb.trim();
+  if(nb){
+    for(i=0;i< datatask.length;i++){
+         if(nb!= i+1){
+          console.log("number does not exist")
+          break
+         }
+    }
+
+  }
+  else 
        datatask.pop();
       }
       function removefirst() {
@@ -151,7 +165,8 @@ function removetask() {
         datatask.splice(1, 1);
        
       }
-
+     
+      
 //   datatask.push(eachtask);
 //   console.log(`Added task: "${eachtask}"`);
 // }
