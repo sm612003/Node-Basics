@@ -58,7 +58,7 @@ function onDataReceived(text) {
     else if (text === 'add') {
       console.log("error");
   }
-  else if ( text === "help\n"){
+  else if ( text === "help"){
     help();
   }
   else if ( text === "remove"){
@@ -117,7 +117,10 @@ function help() {
   2-hello (x): Print hello + x
   3-exit: quit the app
   4- quit: quit the app
-  5-help:lists all the possible commands `
+  5-help:lists all the possible commands 
+  6-remove(without anything): should remove the last task
+  7-remove 1:remove the FIRST element of the list
+  8-remove 2:remove the SECOND element of the list`
   )
 }
 
