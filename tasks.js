@@ -33,7 +33,7 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-
+const datatask = ['sayhello','hello(x)'];
 function onDataReceived(text) {
   text = text.trim();
   text.split(' ');
@@ -47,6 +47,13 @@ function onDataReceived(text) {
   } else if (text === 'hello') {
     hello(); //  call hello without an argument
   }
+  else if (text === 'list') {
+    list();}
+
+  // } else if (text.startsWith('add ')) {
+  //   const eachtask = text.slice(4);
+  //   addTask(eachtask);
+  // }
   else if ( text === "help\n"){
     help();
   }
@@ -54,7 +61,6 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
-
 
 /**
  * prints "unknown command"
@@ -101,6 +107,24 @@ function help() {
   5-help:lists all the possible commands `
   )
 }
+
+function list() {
+  if (datatask.length === 0) {
+    console.log('No tasks available.');
+  } else {
+    console.log('Tasks:');
+    datatask.forEach((eachtask, index) => {
+      console.log(`${index + 1}. ${eachtask}`);
+    });
+  }
+}
+
+// function addTask(eachtask) {
+//   datatask.push(eachtask);
+//   console.log(`Added task: "${eachtask}"`);
+// }
+ 
+
 
 // The following line starts the application
 startApp("Souhad Moussa")
