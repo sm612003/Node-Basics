@@ -48,12 +48,12 @@ function onDataReceived(text) {
     hello(); //  call hello without an argument
   }
   else if (text === 'list') {
-    list();}
+    list();
 
-  // } else if (text.startsWith('add ')) {
-  //   const eachtask = text.slice(4);
-  //   addTask(eachtask);
-  // }
+  } else if (text.startsWith('add ')) {
+    const eachtask = text.slice(4);
+    addTask(eachtask);
+  }
   else if ( text === "help\n"){
     help();
   }
@@ -119,10 +119,10 @@ function list() {
   }
 }
 
-// function addTask(eachtask) {
-//   datatask.push(eachtask);
-//   console.log(`Added task: "${eachtask}"`);
-// }
+function addTask(eachtask) {
+  datatask.push(eachtask);
+  console.log(`Added task: "${eachtask}"`);
+}
  
 
 
