@@ -33,12 +33,15 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-const datatask = ['sayhello','hello(x)'];
-function onDataReceived(text) {
+  let datatask = [
+    { eacht: 'sayhello', done: false },
+    { eacht: 'hello(x)', done: false }
+  ];
+  function onDataReceived(text) {
   text = text.trim();
   text.split(' ');
  
-  if (text === 'quit\n' ||text==='exit\n') {
+  if (text === 'quit' ||text==='exit') {
     quit();
   }
   else if (text.startsWith('hello ')) {
@@ -63,8 +66,6 @@ function onDataReceived(text) {
   }
   else if ( text.startsWith("remove")){
     removetask(text.slice(6));
-    
-
   }
   else if (text==="remove 1"){
     removefirst();
@@ -75,7 +76,10 @@ function onDataReceived(text) {
   else if ( text.startsWith("edit")){
     edit(text.slice(4));
   }
+  else if(text.trim().split(' ') [0]==="check"){
+    check(text);
 
+  }
   else{
     unknownCommand(text);
   }
@@ -131,64 +135,73 @@ function help() {
 }
 
 function list() {
+
   if (datatask.length === 0) {
     console.log('No tasks available.');
   } else {
     console.log('Tasks:');
-    datatask.forEach((eachtask, index) => {
-      console.log(`${index + 1}. ${eachtask}`);
+    datatask.forEach((task, index) => {
+      task.done? console.log(`[✓] ${index+1} ${task.eacht}`) : console.log(`[ ] ${index+1} ${task.eacht}`)
+      // let checkBox="[ ]"
+
+      // if(datatask.done===true){
+      //   checkBox="[✓]"
+      //   console.log(`${index + 1}. ${task.eacht} (done: ${task.done})`);
+      // }
+      
+      
     });
   }
 }
 
 function addTask(eachtask) {
-  datatask.push(eachtask);
+  datatask.push({ eacht: eachtask, done: false });
   console.log(`Added task: "${eachtask}"`);
 }
  //remove (without anything) should remove the last task
-function removetask(numb) {
-  nb=numb.trim();
-  if(nb){
-    for(i=0;i< datatask.length;i++){
-         if(nb!= i+1){
-          console.log("number does not exist")
-          break
-         }
+ function removetask(numb) {
+  const nb = numb.trim();
+  if (nb) {
+    const index = parseInt(nb) - 1;
+    if (index >= 0 && index < datatask.length) {
+      datatask.splice(index, 1);
+    } else {
+      console.log("Invalid task number");
     }
-
+  } else {
+    datatask.pop();
   }
-  else 
-       datatask.pop();
-      }
+}
       function removefirst() {
         datatask.splice(0, 1);
        
       }
       function removesecond() {
-        datatask.splice(1, 1);
+        if (datatask.length >= 2) {
+          datatask.splice(1, 1);
        
-      }
+      }}
       function edit(te) {
-        let tet=te.trim();
-        if (tet){
-          if(tet=== "new text"){
-            datatask[datatask.length-1] ="new text"
-            }
-            else if (tet.startsWith("1")){
-             datatask[0]="new text" 
+        const tet = te.trim();
+        if (tet) {
+          if (tet === "new text") {
+            datatask[datatask.length - 1].eacht = "new text";
+          } else if (tet.startsWith("1")) {
+            datatask[0].eacht = "new text";
+          } else {
+            console.log("Invalid edit command");
           }
+        } else {
+          console.log("Error");
         }
+      }
+
+      function check(text) {
         
-        else   
-          console.log("error");
-      
       }
       
      
       
-//   datatask.push(eachtask);
-//   console.log(`Added task: "${eachtask}"`);
-// }
 
 
 // The following line starts the application
