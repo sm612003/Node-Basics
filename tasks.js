@@ -76,7 +76,11 @@ function startApp(name){
   else if ( text.startsWith("edit")){
     edit(text.slice(4));
   }
-  else if(text.trim().split(' ') [0]==="check"){
+  else if(text==="check"){
+    check(text);
+
+  }
+  else if(text==="uncheck"){
     check(text);
 
   }
@@ -154,6 +158,16 @@ function list() {
   }
 }
 
+
+
+   
+
+
+
+
+
+
+
 function addTask(eachtask) {
   datatask.push({ eacht: eachtask, done: false });
   console.log(`Added task: "${eachtask}"`);
@@ -196,8 +210,20 @@ function addTask(eachtask) {
         }
       }
 
-      function check(text) {
-        
+      function check(checkk) {
+        let checked = checkk.trim();
+        if (checked) {
+          tasks[checked - 1].done = true;
+          console.log("	✓");
+        } else console.log("error");
+      }
+      
+      function uncheck(uncheckk) {
+        let uncheckedd = uncheckk.trim();
+        if (uncheckedd) {
+          tasks[uncheckedd - 1].done = false;
+          console.log("	");
+                } else console.log("error");
       }
       
      
