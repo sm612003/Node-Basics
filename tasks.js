@@ -54,8 +54,21 @@ function onDataReceived(text) {
     const eachtask = text.slice(4);
     addTask(eachtask);
   }
+  
+    else if (text === 'add') {
+      console.log("error");
+  }
   else if ( text === "help\n"){
     help();
+  }
+  else if ( text === "remove"){
+    removetask();
+  }
+  else if (text==="remove 1"){
+    removefirst();
+  }
+  else if (text==="remove 2"){
+    removesecond();
   }
   else{
     unknownCommand(text);
@@ -123,7 +136,22 @@ function addTask(eachtask) {
   datatask.push(eachtask);
   console.log(`Added task: "${eachtask}"`);
 }
- 
+ //remove (without anything) should remove the last task
+function removetask() {
+       datatask.pop();
+      }
+      function removefirst() {
+        datatask.splice(0, 1);
+       
+      }
+      function removesecond() {
+        datatask.splice(1, 1);
+       
+      }
+
+//   datatask.push(eachtask);
+//   console.log(`Added task: "${eachtask}"`);
+// }
 
 
 // The following line starts the application
