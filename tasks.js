@@ -72,7 +72,10 @@ function onDataReceived(text) {
   else if (text==="remove 2"){
     removesecond();
   }
- 
+  else if ( text.startsWith("edit")){
+    edit(text.slice(4));
+  }
+
   else{
     unknownCommand(text);
   }
@@ -165,6 +168,22 @@ function removetask(numb) {
         datatask.splice(1, 1);
        
       }
+      function edit(te) {
+        let tet=te.trim();
+        if (tet){
+          if(tet=== "new text"){
+            datatask[datatask.length-1] ="new text"
+            }
+            else if (tet.startsWith("1")){
+             datatask[0]="new text" 
+          }
+        }
+        
+        else   
+          console.log("error");
+      
+      }
+      
      
       
 //   datatask.push(eachtask);
